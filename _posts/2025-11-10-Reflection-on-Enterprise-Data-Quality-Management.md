@@ -1,6 +1,6 @@
 ---
-title: "Enterprise Data Quality Management"
-date: 2026-01-31
+title: "Reflection on Enterprise Data Quality Management"
+date: 2025-11-10
 ---
 
 I recently had the privilege of leading a hands-on workshop with a financial services client, focusing on Data Intelligence and Data Quality. Some reflections: 
@@ -15,4 +15,3 @@ As part of the workshop, we:
 Why are we doing this: In both today’s rapidly evolving AI landscape and in traditional business processes, one principle remains constant: bad data in, bad data out. Ensuring your data is of high quality - accurate, complete, timely, consistent, and fit for purpose - is integral for operational excellence and achieving/maintaining competitive edge. 
 
 Excited to keep driving these conversations and helping organizations turn raw data into strategic/actionable insights. 
-
