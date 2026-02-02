@@ -2,7 +2,7 @@
 title: "The AI Ladder Part 2"
 subtitle: "A walkthrough of IBM’s AI Ladder and how organizations move from collecting data to infusing AI into an enterprise"
 author: "Henry Xiao"
-date: 2025-01-31
+date: 2026-01-31
 tags:
   - AI
   - Data
