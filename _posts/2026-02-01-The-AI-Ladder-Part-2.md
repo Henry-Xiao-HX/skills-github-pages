@@ -37,10 +37,10 @@ The AI Ladder is applicable to organizations in Finance, Healthcare, Retail, and
 ### 1️⃣ Collect — Bringing Critical Claims Data Together
 Henry-Insurance begins by consolidating all the data required for claims decisions:
 
-Claims management system data: incident reports, adjuster notes, payout histories
-Customer data: policy information, risk profiles, prior interactions
-Digital evidence: photos, videos, IoT sensor data from connected vehicles and smart homes
-External datasets: weather reports, repair cost databases, accident reports
+- Claims management system data: incident reports, adjuster notes, payout histories
+- Customer data: policy information, risk profiles, prior interactions
+- Digital evidence: photos, videos, IoT sensor data from connected vehicles and smart homes
+- External datasets: weather reports, repair cost databases, accident reports
 
 They implement ingestion pipelines using watsonx.data to gather structured and unstructured data at scale, set up batch + real-time ingestion pipelines, and applied data quality checks (timestamp validation, duplicate image detection, missing-field alerts)
 
@@ -58,7 +58,7 @@ Using watsonx.data intelligence and watsonx.governance, they create a layer of s
 **Result**: Claims adjusters and data scientists now operate from consistent, governed claims data, reducing rework and compliance risk.
 
 ### 3️⃣ Analyze — Using AI to Evaluate, Classify, and Predict
-With trusted data in place, Henry-Insurance moves to advanced analytics and model development using SPSS, Cognos Analytics, Watson Machine Learning, and watsonx.ai.
+With trusted data in place, Henry-Insurance moves to advanced analytics and model development using SPSS and watsonx.ai.
 They build models for:
 1. Damage Classification: Computer vision models classify photos of vehicles or property damage into severity tiers.
 2. Fraud Risk Detection: ML models identify anomalies—e.g., repeated claims patterns, inconsistent metadata, unusual location histories.
@@ -67,14 +67,14 @@ They build models for:
 
 Some Key activities:
 1. Feature engineering (claim history, geolocation patterns, claimant behavior signals)
-2. Training + evaluating models in Watson Machine Learning
+2. Training + evaluating models in watsonx.ai
 3. Using watsonx.ai to analyze adjuster notes and generate summaries of long claim narratives
 4. Visualizing claim patterns, cycle times, and predicted losses in Cognos Analytics
 
 Result: The analytics layer produces fast, explainable insights that help Henry-Insurance prepare claims for automated or human review.
 
 ### 4️⃣ Infuse — Embedding AI Into the Claims Workflow
-Finally, Henry-Insurance operationalizes the insights using IBM watsonx APIs, RPA, and Cloud Pak for Automation. Where AI shows up in real operations. 
+Finally, Henry-Insurance operationalizes the insights using IBM watsonx.orchestrate and RPA. Where AI shows up in real operations. 
 
 1. FNOL triage: AI reads submitted claims, classifies them, and assigns priority
 2. Automated document processing: GenAI extracts key fields from police reports, medical invoices, and repair bills
@@ -82,7 +82,6 @@ Finally, Henry-Insurance operationalizes the insights using IBM watsonx APIs, RP
 4. Straight-through processing: low-risk, well-documented claims get auto-approved within minutes
 5. Adjuster enablement: RPA fills case management systems with AI-generated summaries, evidence, and recommendations
 6. Monitoring & governance: Drift detection ensures fraud models stay accurate as claimant behavior evolves
-7. watsonx.governance tracks lineage, approvals, explanations, and bias metrics
 
 Result: Claims that once took 5–10 days now close in hours, fraud detection improves, and adjuster workload is cut dramatically.
 

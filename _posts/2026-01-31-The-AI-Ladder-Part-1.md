@@ -43,15 +43,11 @@ The AI Ladder enables the transition from **+AI** to **AI+**: moving beyond usin
 ### What this stage is about
 Collecting and storing **high‑quality data from diverse sources** so AI efforts have something reliable to work with.
 
-### Key Actions
-- Identifying data sources such as **databases, SaaS systems**
-- Implementing collection tools and pipelines
-- Ensuring **data quality** at the point of entry
-
-### common issues 
-- Siloed data 
-- Inconsistent formats
-- Unstructured data
+### Common Issues to address
+- Siloed data across databases and systems. 
+- Inconsistent formats. 
+- Unstructured data under-utilized
+- Low quality data. 
 
 ### High Value Use Cases
 - Provide a **Single Point of Access** to data to break down data silos
@@ -79,9 +75,14 @@ Collecting and storing **high‑quality data from diverse sources** so AI effort
     - Access, process and deliver unstructured data to maximize ROI of enterprise data. 
 
 
-### Data Platform Solutions:
+### IBM Data Platform Solutions:
 - **watsonx.data**
 - **watsonx.data integration**
+- Compareable solutions:
+    - AWS Glue
+    - Ab Initio
+    - Informatica PowerCenter
+
 ---
 
 # 2️⃣ Organize: Making Data Usable, Trusted, and Accessible
@@ -111,14 +112,13 @@ Cleaning, structuring, governing, and centralizing data so it becomes a trusted 
 - Data Productization: 
     - Accessible data: **Data Democratization and Data Mesh** - decentralized data architecture that treats data as a product and shift responsbility from central teams to business domains, improving data reusability 
 
-### Importance
-- Compliance 
-- Risk
-- Governance: privacy and security 
-
-### Data Platform Solutions: 
+### IBM Data Platform Solutions: 
 - **IBM watsonx.data Intelligence** 
 - **IBM watsonx.governance**
+- Compareable solutions: 
+    - Atlan Data Catalog
+    - Azure Data Catalog 
+    - Credo AI
 ---
 
 # 3️⃣ Analyze: Extracting Insight Through AI & ML
@@ -153,9 +153,13 @@ Using statistical analysis, machine learning, and artificial intelligence to der
 ### Notes
 The Analyze stage is often where organizations see their first tangible AI wins: clear patterns discovered, accurate predictions generated, and actionable insights delivered to the business. But these wins only happen when earlier rungs of the AI Ladder—Collect (clean, integrated data) and Organize (trusted, governed data)—have been done correctly. 
 
-### Data Platform Solutions:
+### IBM Data Platform Solutions:
 - **IBM SPSS**
 - **watsonx.ai**
+- Comparable solutions: 
+    - Amazon Bedrock
+    - DataRobot
+    - Microsoft Azure Machine Learning 
 
 ---
 
@@ -188,6 +192,10 @@ At the earlier rungs of the AI Ladder (Collect -> Organize -> Analyze), AI typic
 ### Data Platform Solutions:
 - **RPA**, 
 - **watsonx.orchestrate**
+- Comparable solutions:
+    - Microsoft Power Automate 
+    - UiPath Agentic Automation 
+    - Salesforce Agentforce 
 
 ---
 
