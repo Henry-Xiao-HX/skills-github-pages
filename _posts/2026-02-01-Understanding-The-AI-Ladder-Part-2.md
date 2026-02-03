@@ -1,5 +1,5 @@
 ---
-title: "The AI Ladder Part 2"
+title: "Understanding the AI Ladder Part 2"
 subtitle: "A walkthrough of IBM’s AI Ladder and how organizations move from collecting data to infusing AI into an enterprise"
 author: "Henry Xiao"
 date: 2026-02-01
@@ -16,7 +16,7 @@ tags:
 
 ## Table of Contents
 - [Overview](#-overview)
-- [Example: Applying the AI Ladder in a Real Scenario: Henry-Insurance](#-example-applying-the-ai-ladder-in-a-real-scenario-henry-insurance)
+- [Example: Applying the AI Ladder in an Insurance Scenario: Henry-Insurance](#-example-applying-the-ai-ladder-in-an-insurance-scenario-henry-insurance)
 - [Conclusion](#-conclusion)
 - [Additional Resources](#-additional-resources)
 
@@ -28,7 +28,7 @@ In the last post we have learned about the AI Ladder. Let's see it in action - i
 
 ---
 
-# 🧩 Example: Applying the AI Ladder in a Real Scenario: Henry-Insurance 
+# 🧩 Example: Applying the AI Ladder in an Insurance Scenario: Henry-Insurance 
 The AI Ladder is applicable to organizations in Finance, Healthcare, Retail, and many more enterprises. Let's see an example on how an insurance company can apply the AI Ladder within their organization. 
 
 ### Background: 
@@ -105,7 +105,7 @@ As a Data & AI specialist, I’ve seen firsthand how organizations can unlock re
 ---
 
 # 📚 Additional Resources
-- [The AI Ladder](https://www.oreilly.com/library/view/the-ai-ladder/9781492073420/)
+- [The AI Ladder by Rob Thomas](https://www.oreilly.com/library/view/the-ai-ladder/9781492073420/)
 - [IBM watsonx](https://www.ibm.com/products/watsonx)
 - [IBM watsonx.data intelligence](https://www.ibm.com/solutions/data-intelligence)
 - [IBM watsonx.data](https://www.ibm.com/products/watsonx-data)

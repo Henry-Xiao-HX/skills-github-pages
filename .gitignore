@@ -36,3 +36,5 @@
 ehthumbs.db
 Thumbs.db
 
+# generated jekyll site
+_site/

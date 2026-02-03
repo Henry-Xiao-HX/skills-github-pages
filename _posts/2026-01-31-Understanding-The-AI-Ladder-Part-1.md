@@ -1,5 +1,5 @@
 ---
-title: "The AI Ladder Part 1"
+title: "Understanding The AI Ladder Part 1"
 subtitle: "A walkthrough of IBM’s AI Ladder and how organizations move from collecting data to infusing AI into an enterprise"
 author: "Henry Xiao"
 date: 2026-01-31
@@ -26,8 +26,11 @@ tags:
 
 ---
 
-## 🔍 Overview
-In this post we will learn about the AI Ladder, why it matters today, and the business challenges it solves. 
+# 🔍 Overview
+
+*The AI Ladder: Accelerate Your Journey to AI*, authored by Rob Thomas, IBM Senior Vice President, offers a practical roadmap for business leaders navigating rapid technological change. 
+
+In this post, I will share some of my key takeaways and draw on my experience helping Financial Services enterprises implement Data and AI solutions to illustrate what this journey looks like in practice.
 
 ---
 
@@ -43,14 +46,16 @@ The AI Ladder enables the transition from **+AI** to **AI+**: moving beyond usin
 ### What this stage is about
 Collecting and storing **high‑quality data from diverse sources** so AI efforts have something reliable to work with.
 
-In highly regulated **financial service industry**, this foundational step carries additional weight: data may include PII or sentitive information and subject to strict audit, privacy, and security requirements.
+In the highly regulated **financial service industry**, this foundational step carries additional weight: data may include PII or sentitive information and subject to strict audit, privacy, and security requirements.
 
 ### Common Issues to address
 - Siloed data across databases and systems. 
     - **Consider siloed legacy systems** including Mainframes and other core banking platforms. 
 - Inconsistent data formats. 
 - Unstructured data under-utilized in the enterprise. 
-    - Examples: Loan applications and forms PDFs. Bank statements. 
+    - Examples: 
+        - Loan applications and forms PDFs. 
+        - Bank statements. 
 - Low quality data. 
 
 ### High Value Use Cases
@@ -227,7 +232,8 @@ As a Data & AI specialist, I’ve seen firsthand how organizations can unlock re
 ---
 
 # 📚 Additional Resources
-- [The AI Ladder by Rob Thomas, Paul Zikopoulos](https://www.oreilly.com/library/view/the-ai-ladder/9781492073420/)
+- [An Example Applying the AI Ladder. Pt 2.](https://henry-xiao-hx.github.io/henry_xiao_blogs/2026/02/01/The-AI-Ladder-Part-2.html)
+- [The AI Ladder by Rob Thomas](https://www.oreilly.com/library/view/the-ai-ladder/9781492073420/)
 - [IBM watsonx](https://www.ibm.com/products/watsonx)
 - [IBM watsonx.data intelligence](https://www.ibm.com/solutions/data-intelligence)
 - [IBM watsonx.data](https://www.ibm.com/products/watsonx-data)

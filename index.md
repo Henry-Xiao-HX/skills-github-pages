@@ -1,5 +1,5 @@
 ---
-title: Welcome to my blog! 
+title: Welcome to my blog
 ---
 
 # Hello! 
@@ -13,6 +13,6 @@ Cheers!
 
 [My LinkedIn](https://www.linkedin.com/in/henry-xiao-hx/)
 
-**P.S.** Outside of work, I’m an enthusiastic chef - because building good Data & AI foundations is important, but crafting a good meal is a non‑negotiable.
+**P.S.** Outside of work, I’m an enthusiastic home cook - because building good Data & AI foundations is important, but crafting a good meal is a non‑negotiable.
 
 [My food blogs](https://www.instagram.com/henry_in_the_kitchen)
