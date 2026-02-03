@@ -38,3 +38,6 @@ Thumbs.db
 
 # generated jekyll site
 _site/
+
+# vs code settings
+.vscode/
