@@ -16,3 +16,5 @@ Cheers!
 **P.S.** Outside of work, I’m an enthusiastic home cook - because building good Data & AI foundations is important, but crafting a good meal is a non‑negotiable.
 
 [My food blogs](https://www.instagram.com/henry_in_the_kitchen)
+
+![](/assets/img/techXchange.jpg)
