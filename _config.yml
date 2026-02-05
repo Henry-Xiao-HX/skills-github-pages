@@ -1,8 +1,7 @@
-# remote_theme: "jekyll/minima@1e8a445"
 theme: minima
-# plugins:
-# - jekyll-remote-theme # add this line to the plugins list if you already have one
 title: Henry Xiao's personal blog
-description: This is where I share some stuff about my life
-author: Henry Xiao (Henry-Xiao-HX)
-# logo: /assets/images/Me.JPG
+description: Data. AI. Shenanigans.
+author: Henry Xiao
+github_username:  Henry-Xiao-HX
+linkedin_username: henry-xiao-hx
+instagram_username: henry_in_the_kitchen
