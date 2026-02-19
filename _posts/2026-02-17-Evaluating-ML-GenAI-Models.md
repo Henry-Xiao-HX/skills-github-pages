@@ -9,6 +9,7 @@ tags:
   - IBM
   - Enterprise AI
   - watsonx
+mermaid: true
 ---
 
 When your data is messy, incomplete, biased, or misaligned with the task, it inevitably shows up as weak or unstable evaluation metrics. This guide explains major evaluation metrics across generative AI, binary classification, and regression — including real-world examples, what “good” looks like, and remediation strategies when metrics are low.
@@ -71,6 +72,17 @@ When your data is messy, incomplete, biased, or misaligned with the task, it ine
 Text generation metrics measure how similar model outputs are to reference texts. They are widely used for tasks like summarization, translation, and generative AI fine-tuning.
 
 ***
+
+```mermaid
+
+flowchart LR    
+A[Reference Text] --> C[Compare Token Overlap]    
+B[Generated Text] --> C    
+C --> D1[ROUGE-1: Unigrams]    
+C --> D2[ROUGE-2: Bigrams]    
+C --> D3[ROUGE-L: Longest Common Subsequence]
+
+```
 
 ## **ROUGE‑1**
 
@@ -162,6 +174,15 @@ Perfect n‑gram match → BLEU = 100 (for a short sentence).
 # **2. Binary Classification Metrics**
 
 Used in fraud detection, healthcare diagnostics, spam filtering, customer churn prediction, and more.
+
+```mermaid
+flowchart TD
+    A[Model Predictions] --> B[Confusion Matrix]
+    B --> C1["Precision = TP / (TP + FP)"]
+    B --> C2["Recall = TP / (TP + FN)"]
+    B --> C3[F1 = Harmonic Mean]
+    B --> C4[TPR, FPR]
+```
 
 ***
 
