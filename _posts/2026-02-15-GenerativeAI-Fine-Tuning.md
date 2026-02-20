@@ -39,9 +39,9 @@ We can adapt a strong base model with **Supervised Fine‑Tuning (SFT)** and **P
 
 | Technique | What it is | When to use | Key knobs you’ll tune |
 |---|---|---|---|
-| **SFT** | Supervised next‑token training on labeled (prompt → response) data | Baseline instruction tuning, domain/brand voice | `max_seq_length`, packing, optimizer, LR schedule, data formatting |
-| **LoRA** | Train **low‑rank adapters** on frozen base weights | Parameter‑efficient tuning with minimal VRAM | `r`, `lora_alpha`, `lora_dropout`, `target_modules`, init (e.g., rsLoRA, LoftQ) |
-| **QLoRA** | LoRA **on a 4‑bit quantized base** (NF4 + double‑quant + paged optimizers) | Lowest VRAM while matching full‑precision SFT quality | `bnb_4bit_*` (NF4/FP4, double‑quant), `optim="paged_adamw_8bit"`, LoRA knobs |
+| **SFT** | Supervised next‑token training on labeled (prompt → response) data | Baseline instruction tuning, domain/brand voice | max_seq_length |
+| **LoRA** | Train **low‑rank adapters** on frozen base weights | Parameter‑efficient tuning with minimal VRAM | `r`, `lora_alpha`, `lora_dropout`, `target_modules` |
+| **QLoRA** | LoRA **on a 4‑bit quantized base** (NF4 + double‑quant + paged optimizers) | Lowest VRAM while matching full‑precision SFT quality | `bnb_4bit_*` (NF4/FP4, double‑quant) |
 | **PEFT (general)** | Adapter/prompt/prefix‑tuning family incl. LoRA | Compose, swap, ship tiny deltas | Method selection, composition, merge policy |
 | **LAB / InstructLab** | Taxonomy‑guided **synthetic alignment** for skills & knowledge | Large‑scale, low‑cost alignment cycles | Taxonomy design, generation filters, two‑phase tuning |
 
@@ -83,32 +83,65 @@ InstructLab utilizes PEFT. So what is PEFT?
 ---
 
 # 2. PEFT
-Parameter-Efficient Fine-Tuning (PEFT) is a technique that adapts large, pre-trained models to new tasks by updating only a small subset of parameters rather than the entire model. By freezing most original weights and training only added, lightweight adapters or specific layers, it drastically reduces computational costs, memory, and storage requirements while achieving performance comparable to full fine-tuning. PEFT includes LoRA, Adapters, Prefix Tuning, Prompt Tuning, IA³, and more - letting you train tiny parameter sets, compose multiple adapters, or ship compact artifacts. Hugging Face’s peft library implements 30+ methods and initializations (LoftQ, PiSSA, EVA, Arrow, etc.). PEFT surveys provide deeper coverage of algorithmic and system‑level considerations.
+Parameter-Efficient Fine-Tuning (PEFT) is a technique that adapts large, pre-trained models to new tasks by updating only a small subset of parameters rather than the entire model. By freezing most original weights and training only added, lightweight adapters or specific layers, it drastically reduces computational costs, memory, and storage requirements while achieving performance comparable to full fine-tuning. PEFT includes LoRA, QLorA, Prefix Tuning, Prompt Tuning, reducing computational costs and memory requirements.
 
-```python
-from transformers import AutoModelForCausalLM
-from peft import get_peft_model, LoraConfig
+We will discuss LoRA, QLoRA next. also Supervised Fine-Tuning, think about it as the full parameter update of a model. 
 
-model = AutoModelForCausalLM.from_pretrained("mistralai/Mistral-7B-v0.1")
-peft_cfg = LoraConfig(r=8, lora_alpha=16, target_modules=["q_proj","v_proj"])
-model = get_peft_model(model, peft_cfg)
-```
 # 3. LoRA - Low‑Rank Adaptation
 
 ### What LoRA Is (and Why It Works)
-**LoRA** freezes the original weight matrix \(W\) and **injects a low‑rank update** \(\Delta W = BA\) into selected linear layers; only the small matrices \(A\) and \(B\) are trained. This yields large memory and compute savings with **no inference latency** once merged.
+
+#### The Short Version
+LoRA freezes the original weight matrix \(W\) and injects a low‑rank update \(\Delta W = BA\) into selected linear layers; only the small matrices \(A\) and \(B\) are trained. This yields large memory and compute savings with no inference latency once merged.
+
+<details>
+<summary><b>The Long Version</b></summary>
+<cite>https://www.ibm.com/docs/en/watsonx/w-and-w/2.2.0?topic=tuning-lora-fine</cite>
+<br><br>
+<i>
+  Low-rank adaptation (LoRA) is a parameter-efficient fine-tuning (PEFT) technique that adds a subset of parameters to the frozen base foundation model and updates the subset during the tuning experiment, without modifying the parameters of the base model. When the tuned foundation model is inferenced, the new parameter weights from the subset are added to the parameter weights from the base model to generate output that is customized for a task.
+<br><br>
+  How the subset of parameters is created involves some mathematics. Remember, the neural network of a foundation model is composed of layers, each with a complex matrix of parameters. These parameters have weight values that are set when the foundation model is initially trained. The subset of parameters that are used for LoRA tuning is derived by applying rank decomposition to the weights of the base foundation model. The rank of a matrix indicates the number of vectors in the matrix that are linearly independent from one another. Rank decomposition, also known as matrix decomposition, is a mathematical method that uses this rank information to represent the original matrix in two smaller matrices that, when multiplied, form a matrix that is the same size as the original matrix. With this method, the two smaller matrices together capture key patterns and relationships from the larger matrix, but with fewer parameters. The smaller matrices produced are called low-rank matrices or low-rank adapters.
+<br><br>
+  During a LoRA tuning experiment, the weight values of the parameters in the subset–the low-rank adapters–are adjusted. Because the adapters have fewer parameters, the tuning experiment is faster and needs fewer resources to store and compute changes. Although the adapter matrices lack some of the information from the base model matrices, the LoRA tuning method is effective because LoRA exploits the fact that large foundation models typically use many more parameters than are necessary for a task.
+<br><br>
+  The output of a LoRA fine-tuning experiment is a set of adapters that contain new weights. When these tuned adapters are multiplied, they form a matrix that is the same size as the matrix of the base model. At inference time, the new weights from the product of the adapters are added directly to the base model weights to generate the fine-tuned output.
+</i>
+</details>
+
+--- 
 
 ### Core Parameters & Options (Hugging Face PEFT)
-- `r`: adapter rank (e.g., 4–64).  
-- `lora_alpha`: scaling factor.  
+- `r`: controls the size of the low-rand decomposition, LoRA replaces the full weight matrix update with two much smaller matrices of rank r. (e.g., 4 - 64).  
+    - Higher r = more expressive adapter = better modeling capacity
+    - Lower r = lighter, cheaper to train = underfit complex tasks 
+    - Typically 16 - 32 (LoRA), 64 (QLoRA)
+- `lora_alpha`: scaling factor, scales the LoRA update before it's added back to the frozen original weight
+    - Too small - weak updates, slow learning
+    - Too large - unstable training or overshooting 
+    - usually lora_alpha = 2 x r 
 - `lora_dropout`: (0–0.1 typical).  
-- `target_modules`: e.g., `"q_proj", "k_proj", "v_proj", "o_proj"`.  
-- `bias`: typically `"none"`.  
-- `task_type`: e.g., `TaskType.CAUSAL_LM`.  
-- `init_lora_weights`: `"gaussian"`, `False`, or `"loftq"` (quantization‑aware init).  
+    - A regularization technique that randomly ignores a subset of neurons to prevent overfitting and improve generalization on small datasets. Increasing model sparsity and prevents the model from becoming to reliant on specific, small-weight connections
+    - A setting of 0.1 means that each neuron has a 10% chance of being ignored during training 
+- `target_modules`: "q_proj", "k_proj", "v_proj", "o_proj".  
+    - Defines where LoRA layers are injected inside the transformer 
+    - "q_proj" - Query projection
+    - "k_proj" - Key projection
+    - "v_proj" - Value projection
+    - "o_proj" - Output projection
+    - Usally target the attention layer, `[q_proj, v_proj]` for fast/low-memory training 
+- `bias`: typically "none".  
+- `task_type`: typically `TaskType.CAUSAL_LM`.  
+    - "SEQ_CLS": PeftModelForSequenceClassification,
+    - "SEQ_2_SEQ_LM": PeftModelForSeq2SeqLM,
+    - "CAUSAL_LM": PeftModelForCausalLM,
+    - "TOKEN_CLS": PeftModelForTokenClassification,
+    - "QUESTION_ANS": PeftModelForQuestionAnswering,
+    - "FEATURE_EXTRACTION": PeftModelForFeatureExtraction,
+- `init_lora_weights`: "gaussian" for LoRA, 'False', or "loftq" for QLoRA.  
 - **rsLoRA**: stabilizes scaling for higher ranks.
 
-## Minimal LoRA Example (PEFT)
+### Minimal LoRA Example (PEFT)
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, TaskType, get_peft_model
@@ -131,14 +164,54 @@ model.print_trainable_parameters()
 
 ```
 ```mermaid
+
 flowchart LR
-  subgraph Frozen Base Model
-    W1[Linear W] -->|+ ΔW| out
-  end
-  A[Low-rank A] --> B[Low-rank B] -->|ΔW=BA| out
-  style W1 fill:#eef,stroke:#66f
-  style A fill:#efe,stroke:#2a2
-  style B fill:#efe,stroke:#2a2
+    %% Simple, readable LoRA flow
+    classDef model fill:#d5f5d6,stroke:#1b5e20,stroke-width:1px;
+    classDef data fill:#e6d6fa,stroke:#4527a0,stroke-width:1px;
+    classDef adapter fill:#d6e9ff,stroke:#0d47a1,stroke-width:1px;
+    classDef note fill:#fff8e1,stroke:#ffb300,stroke-width:1px,color:#5d4037;
+
+    S((Start))
+
+    %% Inputs & Setup
+    DSET["[Training data]"]:::data
+    BASE["(Frozen base model<br/>weights stay fixed)"]:::model
+    LORA["[LoRA adapters<br/>(rank = r)]"]:::adapter
+
+    %% Forward
+    INP[Take a batch of tokenized text]:::data
+    FWD[Forward pass:<br/>Base + LoRA adapters]:::adapter
+    OUT[Model output] 
+    TGT["Target tokens (labels)"]:::data
+
+    %% Loss & Update
+    LOSS["Compute loss<br/>(TaskType.CAUSAL_LM)"]:::note
+    GRAD[Backprop through adapters only]:::adapter
+    UPDATE["Update adapter weights<br/>(scale = lora_alpha / r,<br/>dropout = lora_dropout)"]:::adapter
+
+    %% Loop / End
+    NEXT{{More batches?}}
+    E((End))
+
+    %% Edges
+    S --> DSET
+    DSET --> INP
+    INP --> FWD
+    BASE --- FWD
+    LORA --- FWD
+    FWD --> OUT --> LOSS
+    DSET -. "compare to" .- TGT
+    TGT --> LOSS
+    LOSS --> GRAD --> UPDATE --> FWD
+    NEXT -- Yes --> INP
+    NEXT -- No --> E
+    UPDATE --> NEXT
+
+    %% Notes for parameters
+    LORA -. "r (rank): capacity" .- S
+    UPDATE -. "lora_alpha: strength<br/>lora_dropout: regularize" .- S
+
 ```
 
 # 4. QLoRA - LoRA on 4‑Bit Quantized Bases
@@ -153,13 +226,13 @@ Hugging Face exposes 4‑bit loading via bitsandbytes; see platform support note
 ### Key Parameters
 - BitsAndBytesConfig
 
-  - load_in_4bit=True
-  - bnb_4bit_quant_type="nf4"
-  - bnb_4bit_use_double_quant=True
-  - bnb_4bit_compute_dtype=torch.bfloat16 
-
-- Optimizer
-  - optim="paged_adamw_8bit" (reduces VRAM). 
+  - `load_in_4bit = True`
+    - Loads the model’s weights in 4-bit quantized format using the bitsandbytes backend
+  - `bnb_4bit_quant_type = "nf4"`
+    - "nf4" = NormalFloat4, a data-aware 4 bit quantization designed for activation/weights that roughly follow a normal distribution. It consistently outperforms uniform 4-bit quantization in downstream LLm because it uses non-uniform bins tailored to the statistical distribution of weights 
+  - `bnb_4bit_use_double_quant = True`
+    - Applies double quantization, and further reduces memory footprint
+  - `bnb_4bit_compute_dtype = torch.bfloat16 `
 
 ```python
 import torch
