@@ -11,19 +11,13 @@ tags:
   - watsonx
 ---
 
-# The AI Ladder: Turning Data Into Actionable Insights and Enterprise Value
-
+In the last post we have learned about the AI Ladder. Let's see it in action - in a fictitious insurance company: Henry-Insurance
 
 ## Table of Contents
 - [Overview](#overview)
 - [Example: Applying the AI Ladder in an Insurance Scenario: Henry-Insurance](#example-applying-the-ai-ladder-in-an-insurance-scenario-henry-insurance)
 - [Conclusion](#conclusion)
 - [Additional Resources](#additional-resources)
-
----
-
-## Overview
-In the last post we have learned about the AI Ladder. Let's see it in action - in a fictitious insurance company: Henry-Insurance
  
 
 ---
