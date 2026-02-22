@@ -2,7 +2,6 @@
 title: Welcome to my blog
 ---
 
-# Hello! 
 My name is Henry Xiao, and I’ve been part of IBM since 2023.
 
 In my role, I focus on helping financial services organizations adopt and accelerate Data and AI solutions: from modernizing data architectures to implementing AI capabilities that drive operational efficiency, strengthen risk management, and support regulatory compliance. 

@@ -1,5 +1,5 @@
 ---
-title: "Understanding The AI Ladder Part 1"
+title: "Understanding The AI Ladder Part 1: Turning Data Into Actionable Insights and Enterprise Value"
 subtitle: "A walkthrough of IBM’s AI Ladder and how organizations move from collecting data to infusing AI into an enterprise"
 author: "Henry Xiao"
 date: 2026-01-31
@@ -11,7 +11,7 @@ tags:
   - watsonx
 ---
 
-# The AI Ladder: Turning Data Into Actionable Insights and Enterprise Value
+*The AI Ladder: Accelerate Your Journey to AI*, authored by Rob Thomas, IBM Senior Vice President, offers a practical roadmap for business leaders navigating rapid technological change. In this post, I will share some of my key takeaways and draw on my experience helping Financial Services enterprises implement Data and AI solutions to illustrate what this journey looks like in practice.
 
 
 ## Table of Contents
@@ -23,14 +23,6 @@ tags:
     - [Infuse: Operationalizing AI Across the Business](#4-infuse-operationalizing-ai-across-the-business)
 - [Conclusion](#-conclusion)
 - [Additional Resources](#-additional-resources)
-
----
-
-# Overview
-
-*The AI Ladder: Accelerate Your Journey to AI*, authored by Rob Thomas, IBM Senior Vice President, offers a practical roadmap for business leaders navigating rapid technological change. 
-
-In this post, I will share some of my key takeaways and draw on my experience helping Financial Services enterprises implement Data and AI solutions to illustrate what this journey looks like in practice.
 
 ---
 

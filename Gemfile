@@ -7,5 +7,5 @@ gem 'rspec'
 # gem "rails"
 gem "jekyll"
 gem "github-pages", "~> 232", group: :jekyll_plugins
-gem "minima", "~> 2.5"
-# gem "minima", github: "jekyll/minima", ref: "1e8a445"
+# gem "minima", "~> 2.5"
+gem "minima", github: "jekyll/minima", ref: "38a84a9"

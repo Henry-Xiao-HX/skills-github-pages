@@ -12,7 +12,6 @@ tags:
 mermaid: true
 ---
 
-# Background
 Back in 2024, my team and I fine-tuned a Lllama model leveraging InstrutLab and Large-scale Alignment for Chatbot (LAB) method: generating synthetic data with a teacher model, and performing Parameter-Efficient-Fine-Tuning (PEFT) to inject IBM Risk Atlas domain expertise into the opensource generative AI model. 
 
 Upon the public archival of the InstructLab project and the subsequent migrations to the individual component projects: [Synthetic Data Generation Hub](https://github.com/Red-Hat-AI-Innovation-Team/sdg_hub) and [Training Hub](https://github.com/Red-Hat-AI-Innovation-Team/training_hub) (an interface for common AI training including Supervised Fine-tuning, Continual Learning, LoRA, ...), I am reflecting on my experience with PEFT and some other thoughts with model tuning. 
@@ -189,10 +188,6 @@ flowchart LR
     LOSS["Compute loss<br/>(TaskType.CAUSAL_LM)"]:::note
     GRAD[Backprop through adapters only]:::adapter
     UPDATE["Update adapter weights<br/>(scale = lora_alpha / r,<br/>dropout = lora_dropout)"]:::adapter
-
-    %% Loop / End
-    NEXT{{More batches?}}
-    E((End))
 
     %% Edges
     S --> DSET

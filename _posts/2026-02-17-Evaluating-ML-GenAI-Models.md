@@ -12,7 +12,7 @@ tags:
 mermaid: true
 ---
 
-When your data is messy, incomplete, biased, or misaligned with the task, it inevitably shows up as weak or unstable evaluation metrics. This guide explains major evaluation metrics across generative AI, binary classification, and regression — including real-world examples, what “good” looks like, and remediation strategies when metrics are low.
+When your data is messy, incomplete, biased, or misaligned with the task, it inevitably shows up as weak or unstable evaluation metrics. This guide explains major evaluation metrics across generative AI, binary classification, and regression - including real-world examples, what “good” looks like, and remediation strategies when metrics are low.
 
 ***
 

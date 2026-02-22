@@ -10,7 +10,6 @@ tags:
   - watsonx
 ---
 
-# Overview
 This RAG project started as a simple side experiment with my colleague Brian Paskin back in *2023*. What began as a small weekend curiosity quickly revealed how Retrieval-Augmented-Generation can help mitigate some of the short comings of Large Language Models at the time
 
 Technology moves fast - we’re way past the cycle of 2023.  While RAG isn’t new anymore, this project showed me how powerful a lightweight generative AI solution can still meaningfully improve team efficiency and productivity.
