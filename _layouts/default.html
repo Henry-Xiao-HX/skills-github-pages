@@ -8,10 +8,19 @@
     {%- include header.html -%}
 
     <main class="page-content" aria-label="Content">
+
+
+      <div class="toc"> 
+        <ul class="toc_list">
+          <li><a href="/"> Home </a></li>
+          <li><a href="/"> Posts </a></li>
+          <li><a href="//"> About </a></li>
+        </ul>
+      </div>
+
       <div class="wrapper">
         {{ content }}
       </div>
-
     </main>
 
     {%- include footer.html -%}
