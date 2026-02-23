@@ -1,6 +1,7 @@
+# Archived 
+This repository is now deprecated and has been archived.
 
-# [Link to Blogs](https://henry-xiao-hx.github.io/henry_xiao_blogs/)
-
+Active development has moved to a new location to reflect the change from Minima to Chirpy Jekyll theme: https://github.com/Henry-Xiao-HX/henry-xiao-blogs
 
 ---
 
